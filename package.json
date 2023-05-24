@@ -1,0 +1,23 @@
+{
+  "name": "electron-test",
+  "version": "1.0.0",
+  "description": "just test",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BuzzLightyear2022/electron-test.git"
+  },
+  "author": "Takehiro Mizuno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BuzzLightyear2022/electron-test/issues"
+  },
+  "homepage": "https://github.com/BuzzLightyear2022/electron-test#readme",
+  "devDependencies": {
+    "electron": "^24.3.1"
+  }
+}
