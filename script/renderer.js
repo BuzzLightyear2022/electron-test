@@ -1,2 +1,5 @@
-const information = document.querySelector('#info');
-information.textContent = `This app is using Chrome (v${versions.chrome()})`;
+const testInput = document.querySelector("#testInput");
+const okButton = document.querySelector("#okButton");
+okButton.addEventListener('click', () => {
+    console.log(testInput.value);
+}, false);

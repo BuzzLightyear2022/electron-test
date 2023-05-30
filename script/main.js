@@ -1,30 +1,31 @@
-const { app, BrowserWindow } = require('electron');
+'use strict'
+
+const { app, BrowserWindow} = require('electron');
+const { Sequelize } = require('sequelize');
 const path = require('path');
 
-const createWindow = () => {
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
-        }
-    });
-    console.log(path.join(__dirname));
-    win.loadFile('index.html');
+class controlApp {
+    static mainWindow;
+    static createWindow = () => {
+        controlApp.mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js')
+            }
+        });
+        controlApp.mainWindow.loadFile('index.html');
+        app.on('window-all-closed', () => {
+            if (process.platform !== 'darwin') {
+                app.quit();
+            }
+        });
+        app.on('activate', () => {
+            if (controlApp.mainWindow === null) {
+                createWindow();
+            }
+        });
+    }
 }
 
-app.whenReady().then(() => {
-    createWindow();
-
-    app.on('active', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
-    });
-});
-
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
-});
+app.on('ready', controlApp.createWindow);
