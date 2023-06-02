@@ -1,11 +1,7 @@
 'use strict'
 
-const { contextBridge } = require('electron');
-const { ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('myAPI', {
-    doAThing: () => {
-        console.log("Hello!");
-    },
-    
+contextBridge.exposeInMainWorld('electronAPI', {
+    sendMessage: (message) => ipcRenderer.send('send-message', message)
 });

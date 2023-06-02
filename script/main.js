@@ -17,6 +17,9 @@ class controlApp {
                 preload: path.join(__dirname, 'preload.js')
             }
         });
+        ipcMain.on('send-message', (event, message) => {
+            sqlProcess.send(message);
+        });
         controlApp.mainWindow.loadFile('index.html');
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {
