@@ -1,8 +1,11 @@
 'use strict'
 
-const { app, BrowserWindow} = require('electron');
-const { Sequelize } = require('sequelize');
 const path = require('path');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { fork } = require('child_process');
+const mySql = require('mysql');
+
+const sqlProcess = fork("./script/sqlProcess.js");
 
 class controlApp {
     static mainWindow;
@@ -28,4 +31,6 @@ class controlApp {
     }
 }
 
-app.on('ready', controlApp.createWindow);
+app.on('ready', 
+    controlApp.createWindow
+);
